@@ -1,15 +1,17 @@
 import Layout from "@/components/Layout";
 import { AuthContext } from "@/context/AuthContext";
 import "@/styles/globals.css";
+import '@/styles/base.css'
 import { useState } from "react";
 
 export default function App({ Component, pageProps }) {
   const [session, setSession] = useState(null)
 
-  function login() {
+  function login(value = 'ANON') {
+    console.log("LOGGING IN")
     setSession({
       token: 'blah',
-      user: {name: 'dave', age: 41}
+      user: {name: value, age: 41}
     })
   }
   function logout() {
