@@ -1,19 +1,39 @@
 import { useState } from "react"
 
-export default function LoginForm({login, cancel}) {
-  const [name, setName] = useState('')
+export default function LoginForm({login, cancel, signup}) {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [signupMode, setSignupMode] = useState(false)
+
+  // async function handleSignup(email, password) {
+  //   const { data, error } = await supabase.auth.signUp({
+  //     email,
+  //     password,
+  //   })
+
+  //   console.log('DID we reach Supabase:', data, error)
+  // }
 
   return (
     <div className="form">
       <div className="form-group">
         <label className="form-label">
-          Name
+          email
         </label>
-          <input className="form-input" value={name} type="text" placeholder="your name" onChange={(e) => setName(e.target.value)}></input>
+          <input className="form-input" value={email} type="email" placeholder="your email" onChange={(e) => setEmail(e.target.value)}></input>
+        <label className="form-label">
+          password
+        </label>
+          <input className="form-input" value={password} type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}></input>
       </div>
       <div className="form-buttons">
+        <button onClick={() => setSignupMode(!signupMode)}>{signupMode ? 'login instead' : 'sign up instead'}</button>
         <button className="btn outline secondary" onClick={cancel}>CANCEL</button>
-        <button className="btn primary floating" onClick={() => login(name)}>LOGIN</button>
+        {signupMode 
+          ? <button className="btn primary floating" onClick={() => signup(email, password)}>SIGNUP</button>
+          : <button className="btn primary floating" onClick={() => login(email, password)}>LOGIN</button>
+        }
+        
       </div>
     </div>
   )

@@ -6,23 +6,25 @@ import { useState } from "react";
 
 export default function App({ Component, pageProps }) {
   const [session, setSession] = useState(null)
+  const [user, setUser] = useState(null)
 
-  function login(value = 'ANON') {
+  function login(session, user) {
     console.log("LOGGING IN")
-    setSession({
-      token: 'blah',
-      user: {name: value, age: 41}
-    })
+    setSession(session)
+    setUser(user)
   }
   function logout() {
     setSession(null)
+    setUser(null)
   }
 
   const authState = {
     session,
+    user,
     login,
-    logout
+    logout,
   }
+  
   return (
     <AuthContext.Provider value={authState}>
       <Layout>
