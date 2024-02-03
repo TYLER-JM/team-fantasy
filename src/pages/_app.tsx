@@ -8,13 +8,13 @@ import { useState } from "react";
 import '@/styles/base.css';
 import "@/styles/globals.css";
 import "@/styles/forms.css";
+import "@/styles/animations.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [session, setSession] = useState(null)
   const [user, setUser] = useState(null)
 
   function login(session: Session, user: User):void {
-    console.log("LOGGING IN")
     setSession(session)
     setUser(user)
   }
@@ -26,6 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const authState = {
     session,
     user,
+    loading: false,
     login,
     logout,
   }
