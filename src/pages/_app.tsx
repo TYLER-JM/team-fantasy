@@ -1,19 +1,23 @@
+import { AppProps } from "next/app";
+import { Session, User } from "@supabase/supabase-js";
+
 import Layout from "@/components/Layout";
 import { AuthContext } from "@/context/AuthContext";
-import "@/styles/globals.css";
-import '@/styles/base.css'
 import { useState } from "react";
 
-export default function App({ Component, pageProps }) {
+import '@/styles/base.css'
+import "@/styles/globals.css";
+
+export default function App({ Component, pageProps }: AppProps) {
   const [session, setSession] = useState(null)
   const [user, setUser] = useState(null)
 
-  function login(session, user) {
+  function login(session: Session, user: User):void {
     console.log("LOGGING IN")
     setSession(session)
     setUser(user)
   }
-  function logout() {
+  function logout():void {
     setSession(null)
     setUser(null)
   }
