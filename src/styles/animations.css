@@ -1,0 +1,12 @@
+.loading {
+  animation: .5s linear infinite alternate loading;
+}
+
+@keyframes loading {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

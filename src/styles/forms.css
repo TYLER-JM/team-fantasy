@@ -1,3 +1,5 @@
+
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -7,7 +9,20 @@
 
 .form-group input {
   padding: .5rem;
-  /* background-color: var(--white); */
   border: 1px solid var(--purple);
   border-radius: var(--border-radius);
+}
+
+.form-header {
+  margin-bottom: 2em;
+}
+
+.form-footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-error {
+  color: red;
 }
