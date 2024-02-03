@@ -1,5 +1,5 @@
 import { AuthContext } from "@/context/AuthContext"
-import { useContext, useRef } from "react"
+import { useContext, useRef, useState } from "react"
 import LoginForm from "./auth/LoginForm"
 import Modal from "./Modal"
 
@@ -8,29 +8,36 @@ import { createClient } from "@/supbaseClient"
 export default function AuthButton() {
   const auth = useContext(AuthContext)
   const modalRef = useRef(null)
+  const [signupMode, setSignupMode] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+
 
   const supabase = createClient()
 
-  async function loginAndCloseModal(email, password) {
-    const { data, error } = await supabase.auth.signInWithPassword({email, password})
-    if (error) {
-      console.log('error reaching SUPABASE', error)
-    }
-    if (data) {
-      auth.login(data.session, data.user)
-    }
-    closeModal()
-  }
+  async function handleSubmit(event) {
+    event.preventDefault()
+    auth.loading = true
 
-  async function signupAndCloseModal(email, password) {
-    const { data, error } = await supabase.auth.signUp({email, password})
-    if (error) {
-      console.log('error reaching SUPABASE', error)
+    const formData = new FormData(event.target)
+    const email = formData.get('email') as string
+    const password = formData.get('password') as string
+    let supabaseRes: {data: any, error: any}
+
+    if (signupMode) {
+      supabaseRes = await supabase.auth.signUp({email, password})
+    } else {
+      supabaseRes = await supabase.auth.signInWithPassword({email, password})
     }
-    if (data) {
-      auth.login(data.session, data.user)
+    if (supabaseRes.error) {
+      setErrorMessage(supabaseRes.error.message)
+    } else {
+      auth.login(supabaseRes.data.session, supabaseRes.data.user)
+      setErrorMessage('')
+      closeModal()
     }
-    closeModal()
+    auth.loading = false
+
+
   }
 
   async function logout() {
@@ -55,7 +62,7 @@ export default function AuthButton() {
     <>
     <button className="btn primary floating" onClick={showModal}>Login</button>
     <Modal modalRef={modalRef}>
-      <LoginForm cancel={closeModal} login={loginAndCloseModal} signup={signupAndCloseModal}/>
+      <LoginForm errorMessage={errorMessage} signupMode={signupMode} setSignupMode={setSignupMode} cancel={closeModal} handleSubmit={handleSubmit}/>
     </Modal>
     </>
   )
