@@ -5,8 +5,9 @@ import Layout from "@/components/Layout";
 import { AuthContext } from "@/context/AuthContext";
 import { useState } from "react";
 
-import '@/styles/base.css'
+import '@/styles/base.css';
 import "@/styles/globals.css";
+import "@/styles/forms.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [session, setSession] = useState(null)

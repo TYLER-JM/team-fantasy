@@ -30,7 +30,6 @@ export default function AuthButton() {
     if (data) {
       auth.login(data.session, data.user)
     }
-    // console.log('back from supabase: ', data)
     closeModal()
   }
 

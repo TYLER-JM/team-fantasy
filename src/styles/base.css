@@ -60,10 +60,22 @@
   margin: auto auto;
   border: none;
   box-shadow: var(--box-shadow);
-  padding: 1rem;
+  padding: 2rem;
+  border-radius: var(--border-radius);
 }
 
 .modal__dialog::backdrop {
   background-color: black;
   opacity: 0.5;
+}
+
+h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.text-s {
+  font-weight: 300;
+  font-size: .85em;
 }
