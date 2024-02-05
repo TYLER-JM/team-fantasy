@@ -14,9 +14,9 @@ export default function NavHeader() {
   const links = [
     {path: '/', label: 'Home'},
     {path: '/standings', label: 'Standings'},
-    {path: '/rosters', label: 'Rosters'},
-    {path: '/games/upcoming', label: 'Upcoming Games'},
-    {path: '/games/past', label: 'Past Games'},
+    // {path: '/rosters', label: 'Rosters'},
+    // {path: '/games/upcoming', label: 'Upcoming Games'},
+    // {path: '/games/past', label: 'Past Games'},
   ]
 
   return (
