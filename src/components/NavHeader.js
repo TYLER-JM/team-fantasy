@@ -11,13 +11,24 @@ const fira = Fira_Sans({subsets: ['latin'], weight: '200'})
 export default function NavHeader() {
   const router = useRouter()
   const [displayed, setDisplayed] = useState(false);
-  const links = [
-    {path: '/', label: 'Home'},
-    {path: '/standings', label: 'Standings'},
-    // {path: '/rosters', label: 'Rosters'},
-    // {path: '/games/upcoming', label: 'Upcoming Games'},
-    // {path: '/games/past', label: 'Past Games'},
-  ]
+  let links = [{path: '/', label: 'Home'},]
+
+  if (router.pathname.startsWith('/league')) {
+    links = [
+      ...links,
+      {path: `/league/${router.query.id}/bets`, label: 'Bets'},
+      {path: `/league/${router.query.id}/standings`, label: 'Standings'},
+      {path: `/league/${router.query.id}/rosters`, label: 'Rosters'},
+      {path: `/league/${router.query.id}/games/upcoming`, label: 'Upcoming Games'},
+    ]
+  } else {
+    links = [
+      {path: '/', label: 'Home'},
+      {path: '/profile', label: 'Profile'},
+      {path: '/invitations', label: 'Invitations'},
+      {path: '/create-league', label: 'Create League!'},
+    ]
+  }
 
   return (
     <>
