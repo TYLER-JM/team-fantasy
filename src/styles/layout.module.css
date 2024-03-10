@@ -41,7 +41,7 @@
 .col6 {
   flex-basis: 50%;
   max-width: 50%;
-  background-color: bisque;
+  /* background-color: bisque; */
 }
 .col4 {
   flex-basis: 33.333333%;

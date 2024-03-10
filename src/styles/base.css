@@ -79,3 +79,33 @@ h3 {
   font-weight: 300;
   font-size: .85em;
 }
+
+.card {
+  box-shadow: var(--box-shadow-sm);
+  border-radius: 5px;
+  background-color: var(--white);
+  padding: 1em;
+}
+
+.link, .link:visited {
+  color: var(--blue);
+  font-size: 1rem;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid var(--blue);
+  padding: 3px;
+  transition: all .2s;
+}
+/* .link::after {
+  content: "&rarr";
+} */
+
+.link span {
+  display: inline-block;
+  transform: translateX(0px);
+  transition: all .2s;
+  font-weight: bolder;
+}
+.link:hover span {
+  transform: translateX(5px);
+}
