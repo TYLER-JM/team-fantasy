@@ -22,7 +22,7 @@
   font-weight: 600;
   transition: all .2s;
   height: 3.3em;
-  width: 9em;
+  width: max-content;
 }
 
 .floating {
