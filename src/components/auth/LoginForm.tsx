@@ -3,6 +3,7 @@ import { useState } from "react"
 export default function LoginForm({errorMessage, signupMode, setSignupMode, handleSubmit, cancel}) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('')
 
   return (
     <form onSubmit={handleSubmit} className='form'>
@@ -20,6 +21,12 @@ export default function LoginForm({errorMessage, signupMode, setSignupMode, hand
             email
           </label>
           <input name="email" className="form-input" value={email} type="email" placeholder="your email" onChange={(e) => setEmail(e.target.value)}></input>
+        </div>
+        <div className="form-group">
+          <label htmlFor="username" className="form-label">
+            User name
+          </label>
+          <input type="text" className="form-input" name="username" placeholder="enter desired username" onChange={e => setUsername(e.target.value)}/>
         </div>
         <div className="form-group">
           <label htmlFor="password" className="form-label">

@@ -3,17 +3,19 @@ import AuthButton from "./AuthButton";
 import styles from "../styles/NavHeader.module.css"
 import { Inter, Fira_Sans } from "next/font/google";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "@/context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 const fira = Fira_Sans({subsets: ['latin'], weight: '200'})
 
 export default function NavHeader() {
+  const auth = useContext(AuthContext)
   const router = useRouter()
   const [displayed, setDisplayed] = useState(false);
   let links = [{path: '/', label: 'Home'},]
 
-  if (router.pathname.startsWith('/league')) {
+  if (auth.user && router.pathname.startsWith('/league')) {
     links = [
       ...links,
       {path: `/league/${router.query.id}/bets`, label: 'Bets'},
@@ -21,7 +23,7 @@ export default function NavHeader() {
       {path: `/league/${router.query.id}/rosters`, label: 'Rosters'},
       {path: `/league/${router.query.id}/games/upcoming`, label: 'Upcoming Games'},
     ]
-  } else {
+  } else if (auth.user) {
     links = [
       {path: '/', label: 'Home'},
       {path: '/profile', label: 'Profile'},

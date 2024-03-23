@@ -21,10 +21,19 @@ export default function AuthButton() {
     const formData = new FormData(event.target)
     const email = formData.get('email') as string
     const password = formData.get('password') as string
+    const username = formData.get('username') as string
     let supabaseRes: {data: any, error: any}
 
     if (signupMode) {
-      supabaseRes = await supabase.auth.signUp({email, password})
+      supabaseRes = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            username
+          }
+        }
+      })
     } else {
       supabaseRes = await supabase.auth.signInWithPassword({email, password})
     }
