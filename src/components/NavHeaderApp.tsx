@@ -7,12 +7,13 @@ import { Inter, Fira_Sans } from "next/font/google";
 import { useParams, usePathname } from "next/navigation";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/app/context/AuthContext";
+import { AuthState } from "@/types/AuthTypes";
 
 const inter = Inter({ subsets: ["latin"] });
 const fira = Fira_Sans({subsets: ['latin'], weight: '200'})
 
 export default function NavHeader() {
-  const auth = useContext(AuthContext)
+  const auth = useContext(AuthContext) as AuthState
   const pathname = usePathname()
   const params = useParams()
   const [displayed, setDisplayed] = useState(false);

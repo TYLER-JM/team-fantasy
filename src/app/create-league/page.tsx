@@ -3,13 +3,14 @@
 import { useContext, useState } from "react"
 import { createClient } from "@/utils/supbaseClient"
 import { AuthContext } from "@/app/context/AuthContext"
+import { AuthState } from "@/types/AuthTypes"
 
 export default function CreateLeague() {
   const supabase = createClient()
 
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const auth = useContext(AuthContext)
+  const auth = useContext(AuthContext) as AuthState
 
   async function handleSubmit(event) {
     event.preventDefault()
@@ -25,7 +26,7 @@ export default function CreateLeague() {
       .from('fantasy_leagues')
       .insert([
         {
-          commissioner_id: auth.user.id,
+          commissioner_id: auth.user?.id,
           name: leagueName,
           league_id: parseInt(realLifeLeague),
           state_id: 1 // open

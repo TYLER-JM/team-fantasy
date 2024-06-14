@@ -42,9 +42,9 @@ type Identity = {
 }
 
 export interface AuthState {
-  session?: Session,
-  user?: SupabaseUser,
+  session: Session|null,
+  user: SupabaseUser|null,
   loading: boolean,
-  login: () => void,
+  login: (session: Session, user: SupabaseUser) => void,
   logout: () => void
 }

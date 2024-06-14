@@ -5,9 +5,10 @@ import Link from 'next/link'
 import styles from '@/styles/layout.module.css'
 import { useContext } from 'react';
 import { AuthContext } from '@/app/context/AuthContext';
+import { AuthState } from '@/types/AuthTypes';
 
 export default function Home() {
-  const auth = useContext(AuthContext)
+  const auth = useContext(AuthContext) as AuthState
 
   return (
     <div className="container">

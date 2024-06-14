@@ -5,9 +5,10 @@ import LoginForm from "./auth/LoginForm"
 import Modal from "./Modal"
 
 import { createClient } from "@/utils/supbaseClient"
+import { AuthState } from "@/types/AuthTypes"
 
 export default function AuthButton() {
-  const auth = useContext(AuthContext)
+  const auth = useContext(AuthContext) as AuthState
   const modalRef = useRef(null)
   const [signupMode, setSignupMode] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
