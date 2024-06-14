@@ -1,8 +1,10 @@
+'use client'
+
 import Link from "next/link";
 import AuthButton from "./AuthButton";
 import styles from "../styles/NavHeader.module.css"
 import { Inter, Fira_Sans } from "next/font/google";
-import { useRouter } from "next/router";
+import { useParams, usePathname } from "next/navigation";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/app/context/AuthContext";
 
@@ -11,17 +13,18 @@ const fira = Fira_Sans({subsets: ['latin'], weight: '200'})
 
 export default function NavHeader() {
   const auth = useContext(AuthContext)
-  const router = useRouter()
+  const pathname = usePathname()
+  const params = useParams()
   const [displayed, setDisplayed] = useState(false);
   let links = [{path: '/', label: 'Home'},]
 
-  if (auth.user && router.pathname.startsWith('/league')) {
+  if (auth.user && pathname?.startsWith('/league')) {
     links = [
       ...links,
-      {path: `/league/${router.query.id}/bets`, label: 'Bets'},
-      {path: `/league/${router.query.id}/standings`, label: 'Standings'},
-      {path: `/league/${router.query.id}/rosters`, label: 'Rosters'},
-      {path: `/league/${router.query.id}/games/upcoming`, label: 'Upcoming Games'},
+      {path: `/league/${params?.id}/bets`, label: 'Bets'},
+      {path: `/league/${params?.id}/standings`, label: 'Standings'},
+      {path: `/league/${params?.id}/rosters`, label: 'Rosters'},
+      {path: `/league/${params?.id}/games/upcoming`, label: 'Upcoming Games'},
     ]
   } else if (auth.user) {
     links = [
@@ -37,7 +40,7 @@ export default function NavHeader() {
       <nav className={`${styles.nav} ${inter.className}`}>
         <ul className={`${styles.nav__group} ${displayed ? styles.displayed : ''}`}>
           {links.map(link => 
-            <li key={Math.random()} className={`${styles.nav__item} ${styles.nav__itemLink} ${router.pathname.endsWith(link.path) && styles.active}`}>
+            <li key={Math.random()} className={`${styles.nav__item} ${styles.nav__itemLink} ${pathname?.endsWith(link.path) && styles.active}`}>
               <Link onClick={() => setDisplayed(d => !d)} className={styles.nav__link} href={link.path}>{link.label}</Link>
             </li>
           )}

@@ -1,6 +1,8 @@
+'use client'
+
 import { useContext, useState } from "react"
-import { createClient } from "@/supbaseClient"
-import { AuthContext } from "@/context/AuthContext"
+import { createClient } from "@/utils/supbaseClient"
+import { AuthContext } from "@/app/context/AuthContext"
 
 export default function CreateLeague() {
   const supabase = createClient()

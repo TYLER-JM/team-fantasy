@@ -11,8 +11,8 @@ import "@/styles/forms.css";
 import "@/styles/animations.css";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [session, setSession] = useState(null)
-  const [user, setUser] = useState(null)
+  const [session, setSession] = useState<Session|null>(null)
+  const [user, setUser] = useState<User|null>(null)
 
   function login(session: Session, user: User):void {
     setSession(session)
