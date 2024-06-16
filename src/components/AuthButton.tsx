@@ -1,10 +1,9 @@
-// import { AuthContext } from "@/context/AuthContext"
 import { AuthContext } from "@/app/context/AuthContext"
-import { MutableRefObject, useContext, useRef, useState } from "react"
+import { useContext, useRef, useState } from "react"
 import LoginForm from "./auth/LoginForm"
 import Modal from "./Modal"
 
-import { createClient } from "@/utils/supbaseClient"
+import { createClient } from "@/utils/supabase/client"
 import { AuthState } from "@/types/AuthTypes"
 
 export default function AuthButton() {
