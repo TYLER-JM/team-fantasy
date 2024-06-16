@@ -1,6 +1,6 @@
 // import { AuthContext } from "@/context/AuthContext"
 import { AuthContext } from "@/app/context/AuthContext"
-import { useContext, useRef, useState } from "react"
+import { MutableRefObject, useContext, useRef, useState } from "react"
 import LoginForm from "./auth/LoginForm"
 import Modal from "./Modal"
 
@@ -9,7 +9,7 @@ import { AuthState } from "@/types/AuthTypes"
 
 export default function AuthButton() {
   const auth = useContext(AuthContext) as AuthState
-  const modalRef = useRef(null)
+  const modalRef = useRef<HTMLDialogElement | null>(null)
   const [signupMode, setSignupMode] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -57,11 +57,11 @@ export default function AuthButton() {
   }
 
   function showModal() {
-    modalRef.current.showModal()
+    modalRef.current?.showModal()
   }
 
   function closeModal() {
-    modalRef.current.close()
+    modalRef.current?.close()
   }
   
   return auth?.user ? (
