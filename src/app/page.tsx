@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-// import styles from '../styles/layout.module.css'
 import styles from '@/styles/layout.module.css'
 import { useContext } from 'react';
 import { AuthContext } from '@/app/context/AuthContext';
