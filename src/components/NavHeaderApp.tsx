@@ -17,7 +17,7 @@ export default function NavHeader() {
   const pathname = usePathname()
   const params = useParams()
   const [displayed, setDisplayed] = useState(false);
-  let links = [{path: '/', label: 'Home'},]
+  let links = [{path: '/dashboard', label: 'Home'},]
 
   if (auth.user && pathname?.startsWith('/league')) {
     links = [
@@ -29,7 +29,7 @@ export default function NavHeader() {
     ]
   } else if (auth.user) {
     links = [
-      {path: '/', label: 'Home'},
+      {path: '/dashboard', label: 'Home'},
       {path: '/profile', label: 'Profile'},
       {path: '/invitations', label: 'Invitations'},
       {path: '/create-league', label: 'Create League!'},

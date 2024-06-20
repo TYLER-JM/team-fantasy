@@ -1,10 +1,5 @@
-'use client'
-
-import { useParams } from "next/navigation";
-
-export default function LeagueDashboard() {
-  const params = useParams()
+export default function LeagueDashboard({ params }: { params: { id: string } }) {
   return (
-    <div>you are on the index page of a league: ...</div>
+    <div>you are on the index page of a league: {params.id} </div>
   )
 }

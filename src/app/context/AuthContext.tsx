@@ -4,6 +4,7 @@ import { createContext, useEffect, useState } from "react";
 import { Session, User } from "@supabase/supabase-js";
 import { AuthState } from "@/types/AuthTypes";
 import { createClient } from "@/utils/supabase/client";
+import { redirect } from "next/navigation";
 
 export const AuthContext = createContext<AuthState | null>(null)
 // export const AuthContext = createContext({})
@@ -42,6 +43,7 @@ export default function AuthProvider({
   function login(session: Session, user: User):void {
     setSession(session)
     setUser(user)
+    redirect('/dashboard')
   }
   function logout():void {
     setSession(null)
