@@ -30,19 +30,19 @@ export async function createLeague(prevState: State, formData: FormData) {
   // return {message: 'Not fully set up yet', errors: {name: 'name no good'}}
 
   const response = await supabase
-  .from('fantasy_leagues')
-  .insert([
-    {
-      commissioner_id: data.user?.id,
-      name: rawFormData.name,
-      season_id: 123,
-      league_id: rawFormData.league,
-      state_id: 1,
-      created_at: date,
-      start_date: date
-    }
-  ])  
-  .select()
+    .from('fantasy_leagues')
+    .insert([
+      {
+        commissioner_id: data.user?.id,
+        name: rawFormData.name,
+        season_id: 123,
+        league_id: rawFormData.league,
+        state_id: 1,
+        created_at: date,
+        start_date: date
+      }
+    ])  
+    .select()
   if (response.error) {
     return {
       message: response.error.message
@@ -53,4 +53,8 @@ export async function createLeague(prevState: State, formData: FormData) {
     revalidatePath('/dashboard');
     redirect(`/league/${newLeague.id}`)
 
+}
+
+export async function inviteToLeague(prevState: State, formData: FormData) {
+  
 }
